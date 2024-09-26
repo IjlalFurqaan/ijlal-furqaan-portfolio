@@ -1,101 +1,101 @@
-// src/components/Projects.js
 import React from 'react';
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
 
-const ProjectsContainer = styled.div`
-  padding: 4rem;
+const ProjectsSection = styled.section`
+  background-color: #f7f7f7;
+  padding: 60px 0;
+  text-align: center;
 `;
 
-const Title = styled(motion.h2)`
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: ${props => props.theme.colors.primary};
+const SectionTitle = styled.h2`
+  color: #333;
+  font-size: 3rem;
+  margin-bottom: 40px;
 `;
 
 const ProjectGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
-const ProjectCard = styled(motion.div)`
-  background-color: ${props => props.theme.colors.secondary};
-  border-radius: 10px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
+const ProjectCard = styled.div`
+  background-color: #2b2b2b;
+  color: #f7f7f7;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 20px;
+  max-width: 450px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: ${props => props.theme.colors.primary};
+  color: #00ff99;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 `;
 
 const ProjectDescription = styled.p`
+  color: #bbb;
+  margin-bottom: 20px;
   font-size: 1rem;
-  line-height: 1.6;
-  flex-grow: 1;
 `;
 
-const ProjectTech = styled.div`
-  margin-top: 1rem;
+const TechTags = styled.div`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
 `;
 
 const TechTag = styled.span`
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.background};
-  padding: 0.3rem 0.6rem;
+  background-color: #00ff99;
+  color: #000;
   border-radius: 15px;
-  font-size: 0.8rem;
+  padding: 8px 15px;
+  margin: 5px;
+  font-size: 0.9rem;
 `;
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "Movie Review App",
-      description: "A platform that allows users to browse, rate, and review movies. Integrated Redux for state management, resulting in a 20% increase in data retrieval speed.",
-      tech: ["HTML5", "CSS3", "JavaScript", "React", "Redux", "Bootstrap"]
-    },
-    {
-      title: "E-commerce App",
-      description: "A comprehensive e-commerce application featuring product listings, shopping cart functionality, and user authentication. Utilized Vite Js for fast build times, decreasing load times by 30%.",
-      tech: ["HTML5", "CSS3", "JavaScript", "React", "Redux", "Material UI", "Vite Js"]
-    }
-  ];
-
   return (
-    <ProjectsContainer>
-      <Title
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Projects
-      </Title>
+    <ProjectsSection>
+      <SectionTitle>Projects</SectionTitle>
       <ProjectGrid>
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={project.title}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <ProjectTitle>{project.title}</ProjectTitle>
-            <ProjectDescription>{project.description}</ProjectDescription>
-            <ProjectTech>
-              {project.tech.map(tech => (
-                <TechTag key={tech}>{tech}</TechTag>
-              ))}
-            </ProjectTech>
-          </ProjectCard>
-        ))}
+        <ProjectCard>
+          <ProjectTitle>Movie Review App</ProjectTitle>
+          <ProjectDescription>
+            A platform that allows users to browse, rate, and review movies.
+          </ProjectDescription>
+          <TechTags>
+            <TechTag>HTML5</TechTag>
+            <TechTag>CSS3</TechTag>
+            <TechTag>JavaScript</TechTag>
+            <TechTag>React</TechTag>
+            <TechTag>Redux</TechTag>
+          </TechTags>
+        </ProjectCard>
+        <ProjectCard>
+          <ProjectTitle>E-commerce App</ProjectTitle>
+          <ProjectDescription>
+            A comprehensive e-commerce application featuring product listings and shopping cart functionality.
+          </ProjectDescription>
+          <TechTags>
+            <TechTag>HTML5</TechTag>
+            <TechTag>CSS3</TechTag>
+            <TechTag>JavaScript</TechTag>
+            <TechTag>React</TechTag>
+            <TechTag>Redux</TechTag>
+            <TechTag>Material UI</TechTag>
+          </TechTags>
+        </ProjectCard>
       </ProjectGrid>
-    </ProjectsContainer>
+    </ProjectsSection>
   );
 };
 

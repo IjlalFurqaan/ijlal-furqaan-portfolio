@@ -1,52 +1,73 @@
-// src/components/Contact.js
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-const ContactContainer = styled.div`
-  padding: 4rem;
+const ContactSection = styled.section`
+  padding: 60px 0;
+  background-color: #f7f7f7;
+  text-align: center;
 `;
 
-const Title = styled(motion.h2)`
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: ${props => props.theme.colors.primary};
+const Title = styled.h2`
+  color: #333;
+  font-size: 3rem;
+  margin-bottom: 40px;
 `;
 
-const Form = styled(motion.form)`
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
+const ContactForm = styled.form`
+  background-color: #2b2b2b;
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 600px;
   margin: 0 auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 `;
 
 const Input = styled.input`
-  margin-bottom: 1rem;
-  padding: 0.8rem;
-  border: 1px solid ${props => props.theme.colors.primary};
-  border-radius: 5px;
-  background-color: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.text};
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #00ff99;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: #00ff99;
+  }
 `;
 
 const TextArea = styled.textarea`
-  margin-bottom: 1rem;
-  padding: 0.8rem;
-  border: 1px solid ${props => props.theme.colors.primary};
-  border-radius: 5px;
-  background-color: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.text};
-  min-height: 150px;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #00ff99;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: #00ff99;
+  }
 `;
 
 const SubmitButton = styled(motion.button)`
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.background};
-  padding: 0.8rem 1.5rem;
+  background-color: #00ff99;
+  color: #000;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
   cursor: pointer;
-  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #00cc7a;
+  }
 `;
 
 const Contact = () => {
@@ -62,27 +83,14 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to a server
     console.log('Form submitted:', formData);
-    // Reset form after submission
     setFormData({ name: '', email: '', message: '' });
   };
 
   return (
-    <ContactContainer>
-      <Title
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Contact Me
-      </Title>
-      <Form
-        onSubmit={handleSubmit}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
+    <ContactSection>
+      <Title>Contact Me</Title>
+      <ContactForm onSubmit={handleSubmit}>
         <Input
           type="text"
           name="name"
@@ -106,15 +114,11 @@ const Contact = () => {
           onChange={handleChange}
           required
         />
-        <SubmitButton
-          type="submit"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
+        <SubmitButton whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           Send Message
         </SubmitButton>
-      </Form>
-    </ContactContainer>
+      </ContactForm>
+    </ContactSection>
   );
 };
 
