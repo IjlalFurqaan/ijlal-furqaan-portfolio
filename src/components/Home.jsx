@@ -132,7 +132,7 @@ const Home = () => {
 
         <SocialIcons>
           <IconLink
-            href="https://github.com/yourusername"
+            href="https://github.com/IjlalFurqaan"
             target="_blank"
             whileHover={{ scale: 1.2, color: '#000' }}
             initial={{ opacity: 0 }}
@@ -142,7 +142,7 @@ const Home = () => {
             <FaGithub />
           </IconLink>
           <IconLink
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/ijlal-furqaan-32b7251b6/"
             target="_blank"
             whileHover={{ scale: 1.2, color: '#0077b5' }}
             initial={{ opacity: 0 }}
