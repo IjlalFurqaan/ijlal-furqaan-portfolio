@@ -101,7 +101,7 @@ const Resume = () => {
       </Section>
 
       <DownloadButton
-        href="public\Ijlal_Furqaan_CV.pdf"
+        href="https://drive.google.com/file/d/1LJDv3pwbZ0hntcrRPo6j52L7YdtEvWpG/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.05 }}
