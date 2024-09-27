@@ -1,7 +1,8 @@
-// src/components/About.js
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import { FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaGit, FaDatabase } from 'react-icons/fa';
+import { SiCplusplus, SiTypescript, SiMongodb, SiHtml5, SiCss3, SiRedux, SiExpress } from 'react-icons/si';
 
 const AboutContainer = styled.div`
   padding: 4rem;
@@ -10,7 +11,7 @@ const AboutContainer = styled.div`
 const Title = styled(motion.h2)`
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
 `;
 
 const Content = styled(motion.div)`
@@ -29,6 +30,9 @@ const Paragraph = styled(motion.p)`
 `;
 
 const SkillsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
   flex: 1;
 `;
 
@@ -39,7 +43,7 @@ const SkillCategory = styled.div`
 const SkillTitle = styled.h3`
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
 `;
 
 const SkillList = styled.ul`
@@ -48,15 +52,42 @@ const SkillList = styled.ul`
 `;
 
 const SkillItem = styled(motion.li)`
+  display: flex;
+  align-items: center;
   margin-bottom: 0.5rem;
+
+  & svg {
+    margin-right: 10px;
+  }
 `;
 
 const About = () => {
   const skills = {
-    'Languages': ['Python', 'C++', 'Java', 'JavaScript', 'TypeScript'],
-    'Web Development': ['HTML5', 'CSS3', 'React', 'Redux', 'Node.js', 'Express.js'],
-    'Databases': ['SQL', 'MongoDB'],
-    'Tools': ['Git', 'GitHub', 'VS Code', 'IntelliJ IDEA']
+    'Languages': [
+      { name: 'Python', icon: <FaPython /> },
+      { name: 'C++', icon: <SiCplusplus /> },
+      { name: 'Java', icon: <FaJava /> },
+      { name: 'JavaScript', icon: <FaJs /> },
+      { name: 'TypeScript', icon: <SiTypescript /> },
+    ],
+    'Web Development': [
+      { name: 'HTML5', icon: <SiHtml5 /> },
+      { name: 'CSS3', icon: <SiCss3 /> },
+      { name: 'React', icon: <FaReact /> },
+      { name: 'Redux', icon: <SiRedux /> },
+      { name: 'Node.js', icon: <FaNodeJs /> },
+      { name: 'Express.js', icon: <SiExpress /> },
+    ],
+    'Databases': [
+      { name: 'SQL', icon: <FaDatabase /> },
+      { name: 'MongoDB', icon: <SiMongodb /> },
+    ],
+    'Tools': [
+      { name: 'Git', icon: <FaGit /> },
+      { name: 'GitHub', icon: <FaGit /> }, // GitHub uses the same Git icon
+      { name: 'VS Code', icon: <FaReact /> }, // Replace with appropriate icon if available
+      { name: 'IntelliJ IDEA', icon: <FaReact /> }, // Replace with appropriate icon if available
+    ],
   };
 
   return (
@@ -92,12 +123,12 @@ const About = () => {
               <SkillList>
                 {skillList.map((skill, skillIndex) => (
                   <SkillItem
-                    key={skill}
+                    key={skill.name}
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 + skillIndex * 0.05 }}
                   >
-                    {skill}
+                    {skill.icon} {skill.name}
                   </SkillItem>
                 ))}
               </SkillList>
