@@ -69,7 +69,7 @@ const Projects = () => {
       <SectionTitle>Projects</SectionTitle>
       <ProjectGrid>
         {/* Movie Review App Card */}
-        <ProjectCard href="https://github.com/IjlalFurqaan/movie-review" target="_blank">
+        <ProjectCard href="https://movie-review-app-by-ijlal.netlify.app/" target="_blank">
           <ProjectTitle>Movie Review App</ProjectTitle>
           <ProjectDescription>
             A platform that allows users to browse, rate, and review movies.
@@ -84,7 +84,7 @@ const Projects = () => {
         </ProjectCard>
 
         {/* E-commerce App Card */}
-        <ProjectCard href="https://github.com/IjlalFurqaan/e-com-app" target="_blank">
+        <ProjectCard href="https://e-comm-by-ijlal.netlify.app/" target="_blank">
           <ProjectTitle>E-commerce App</ProjectTitle>
           <ProjectDescription>
             A comprehensive e-commerce application featuring product listings and shopping cart functionality.
