@@ -38,17 +38,17 @@ const Description = styled(motion.p)`
   margin: 20px 0;
 `;
 
-const ImageArea = styled.div`
-  margin-top: 40px;
-`;
+// const ImageArea = styled.div`
+//   margin-top: 40px;
+// `;
 
-const ProfileImage = styled(motion.img)`
-  border-radius: 50%;
-  border: 4px solid #00ff99;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-`;
+// const ProfileImage = styled(motion.img)`
+//   border-radius: 50%;
+//   border: 4px solid #00ff99;
+//   width: 200px;
+//   height: 200px;
+//   object-fit: cover;
+// `;
 
 const HighlightText = styled.span`
   color: #00ff99;
@@ -165,7 +165,7 @@ const Home = () => {
         </SocialIcons>
       </TextArea>
 
-      <ImageArea>
+      {/* <ImageArea>
         <ProfileImage
           src="/20210613034946_IMG_4168.jpg"
           alt="Ijlal Furqan"
@@ -173,7 +173,7 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         />
-      </ImageArea>
+      </ImageArea> */}
     </HomeContainer>
   );
 };

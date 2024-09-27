@@ -19,7 +19,7 @@ const ProjectGrid = styled.div`
   flex-wrap: wrap;
 `;
 
-const ProjectCard = styled.div`
+const ProjectCard = styled.a` // Updated to an anchor tag
   background-color: #2b2b2b;
   color: #f7f7f7;
   border-radius: 15px;
@@ -28,6 +28,7 @@ const ProjectCard = styled.div`
   max-width: 450px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
 
   &:hover {
     transform: translateY(-10px);
@@ -67,7 +68,8 @@ const Projects = () => {
     <ProjectsSection>
       <SectionTitle>Projects</SectionTitle>
       <ProjectGrid>
-        <ProjectCard>
+        {/* Movie Review App Card */}
+        <ProjectCard href="https://github.com/IjlalFurqaan/movie-review" target="_blank">
           <ProjectTitle>Movie Review App</ProjectTitle>
           <ProjectDescription>
             A platform that allows users to browse, rate, and review movies.
@@ -80,7 +82,9 @@ const Projects = () => {
             <TechTag>Redux</TechTag>
           </TechTags>
         </ProjectCard>
-        <ProjectCard>
+
+        {/* E-commerce App Card */}
+        <ProjectCard href="https://github.com/IjlalFurqaan/e-com-app" target="_blank">
           <ProjectTitle>E-commerce App</ProjectTitle>
           <ProjectDescription>
             A comprehensive e-commerce application featuring product listings and shopping cart functionality.
