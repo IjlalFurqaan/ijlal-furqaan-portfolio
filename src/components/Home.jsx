@@ -1,7 +1,7 @@
+// src/components/Home.jsx
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { Typed } from 'react-typed';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const HomeContainer = styled.div`
@@ -95,12 +95,7 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Typed
-            strings={['Fullstack Developer', 'Software Engineer', 'React Enthusiast']}
-            typeSpeed={50}
-            backSpeed={30}
-            loop
-          />
+          Fullstack Developer
         </Subtitle>
 
         <Description
