@@ -3,7 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './styles/theme';
-import GlobalStyles from './styles/globalStyles';
+// import { Global } from '@emotion/react';
+// import { globalStyles } from './styles/globalStyles'; 
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
@@ -14,7 +15,7 @@ import Contact from './components/Contact';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
+      {/* <GlobalStyles /> */}
       <Router>
         <Header />
         <Routes>
