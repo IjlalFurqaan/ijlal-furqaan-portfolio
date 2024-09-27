@@ -1,9 +1,10 @@
-// src/components/Home.jsx
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
+// Styled components remain the same
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,7 +55,7 @@ const HighlightText = styled.span`
   font-weight: bold;
 `;
 
-const Button = styled(motion.a)`
+const Button = styled(motion(Link))` // Change from motion.a to motion(Link)
   display: inline-block;
   padding: 12px 24px;
   margin-top: 30px;
@@ -120,7 +121,7 @@ const Home = () => {
         </Description>
 
         <Button
-          href="#contact"
+          to="/contact" // Change href to 'to' and point to the contact route
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}
