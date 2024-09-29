@@ -84,9 +84,9 @@ const About = () => {
     ],
     'Tools': [
       { name: 'Git', icon: <FaGit /> },
-      { name: 'GitHub', icon: <FaGit /> }, // GitHub uses the same Git icon
-      { name: 'VS Code', icon: <FaReact /> }, // Replace with appropriate icon if available
-      { name: 'IntelliJ IDEA', icon: <FaReact /> }, // Replace with appropriate icon if available
+      { name: 'GitHub', icon: <FaGit /> }, 
+      { name: 'VS Code', icon: <FaReact /> }, 
+      { name: 'IntelliJ IDEA', icon: <FaReact /> }, 
     ],
   };
 
