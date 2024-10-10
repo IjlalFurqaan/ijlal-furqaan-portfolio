@@ -1,53 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { keyframes } from '@emotion/react';
 import axios from 'axios';
+import { Paperclip, X } from 'lucide-react';
 
-// Keyframes for background animation (color transition)
-const backgroundAnimation = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
+// Constants
+const PRIMARY_COLOR = '#00ff99';
+const BACKGROUND_COLOR = '#2b2b2b';
+const TEXT_COLOR = '#fff';
+const BORDER_RADIUS = '8px';
 
-// Keyframes for floating dots
-const float = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-`;
-
+// Styled Components
 const ContactSection = styled.section`
   padding: 80px 0;
-  background: linear-gradient(-45deg, #ffcc66, #ff99cc, #66ffcc, #99ccff);
-  background-size: 400% 400%;
-  animation: ${backgroundAnimation} 15s ease infinite;
   text-align: center;
   position: relative;
   overflow: hidden;
-`;
-
-const FloatingDot = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  animation: ${float} 5s ease-in-out infinite;
-  opacity: 0.5;
-
-  &:nth-of-type(1) { top: 10%; left: 20%; animation-duration: 6s; }
-  &:nth-of-type(2) { top: 40%; left: 70%; animation-duration: 7s; }
-  &:nth-of-type(3) { top: 80%; left: 50%; animation-duration: 5.5s; }
-  &:nth-of-type(4) { top: 30%; left: 10%; animation-duration: 6.5s; }
-  &:nth-of-type(5) { top: 60%; left: 80%; animation-duration: 4.5s; }
 `;
 
 const Title = styled.h2`
@@ -62,7 +30,7 @@ const Title = styled.h2`
     position: absolute;
     width: 80px;
     height: 4px;
-    background-color: #00ff99;
+    background-color: ${PRIMARY_COLOR};
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
@@ -70,58 +38,106 @@ const Title = styled.h2`
 `;
 
 const ContactForm = styled(motion.form)`
-  background-color: #2b2b2b;
+  background-color: ${BACKGROUND_COLOR};
   border-radius: 15px;
   padding: 40px;
   max-width: 600px;
   margin: 0 auto;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+
   &:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   }
 `;
 
-const Input = styled.input`
+const InputStyles = `
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #00ff99;
+  border-radius: ${BORDER_RADIUS};
+  border: 1px solid ${PRIMARY_COLOR};
   background-color: #444;
-  color: #fff;
+  color: ${TEXT_COLOR};
   font-size: 1rem;
   transition: all 0.3s ease;
 
   &:focus {
     outline: none;
-    border-color: #00ff99;
-    box-shadow: 0 0 10px #00ff99;
+    border-color: ${PRIMARY_COLOR};
+    box-shadow: 0 0 10px ${PRIMARY_COLOR};
   }
+`;
+
+const Input = styled.input`
+  ${InputStyles}
 `;
 
 const TextArea = styled.textarea`
-  width: 100%;
-  padding: 15px;
+  ${InputStyles}
+`;
+
+const FileInputWrapper = styled.div`
+  position: relative;
   margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #00ff99;
+`;
+
+const FileInputLabel = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
   background-color: #444;
-  color: #fff;
-  font-size: 1rem;
+  color: ${TEXT_COLOR};
+  border-radius: ${BORDER_RADIUS};
+  cursor: pointer;
   transition: all 0.3s ease;
 
-  &:focus {
-    outline: none;
-    border-color: #00ff99;
-    box-shadow: 0 0 10px #00ff99;
+  &:hover {
+    background-color: #555;
+  }
+
+  svg {
+    margin-right: 10px;
   }
 `;
 
+const HiddenFileInput = styled.input`
+  display: none;
+`;
+
+const FileList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+`;
+
+const FileItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #444;
+  color: ${TEXT_COLOR};
+  padding: 5px 10px;
+  border-radius: ${BORDER_RADIUS};
+  margin-bottom: 5px;
+`;
+
+const RemoveFileButton = styled.button`
+  background: none;
+  border: none;
+  color: ${TEXT_COLOR};
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+`;
+
 const SubmitButton = styled(motion.button)`
-  background-color: #00ff99;
+  background-color: ${PRIMARY_COLOR};
   color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: ${BORDER_RADIUS};
   padding: 15px 30px;
   font-size: 1.2rem;
   cursor: pointer;
@@ -142,13 +158,25 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
+  const [attachments, setAttachments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    const newFiles = Array.from(e.target.files);
+    setAttachments([...attachments, ...newFiles]);
+  };
+
+  const handleRemoveFile = (index) => {
+    const newAttachments = attachments.filter((_, i) => i !== index);
+    setAttachments(newAttachments);
   };
 
   const handleSubmit = async (e) => {
@@ -156,13 +184,26 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('message', formData.message);
+    
+    attachments.forEach((file, index) => {
+      formDataToSend.append(`attachments[${index}]`, file);
+    });
+
     try {
-     
-      const response = await axios.post('http://localhost:3000/api/contact', formData);
+      const response = await axios.post('http://localhost:3000/api/contact', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       
       if (response.status === 200) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
+        setAttachments([]);
       } else {
         setSubmitStatus('error');
       }
@@ -176,12 +217,6 @@ const Contact = () => {
 
   return (
     <ContactSection>
-      <FloatingDot />
-      <FloatingDot />
-      <FloatingDot />
-      <FloatingDot />
-      <FloatingDot />
-      
       <Title>Contact Me</Title>
       <ContactForm
         onSubmit={handleSubmit}
@@ -213,6 +248,31 @@ const Contact = () => {
           rows="6"
           required
         />
+        <FileInputWrapper>
+          <FileInputLabel htmlFor="file-input">
+            <Paperclip size={20} />
+            Attach Files
+          </FileInputLabel>
+          <HiddenFileInput
+            id="file-input"
+            type="file"
+            multiple
+            onChange={handleFileChange}
+            ref={fileInputRef}
+          />
+        </FileInputWrapper>
+        {attachments.length > 0 && (
+          <FileList>
+            {attachments.map((file, index) => (
+              <FileItem key={index}>
+                {file.name}
+                <RemoveFileButton onClick={() => handleRemoveFile(index)}>
+                  <X size={16} />
+                </RemoveFileButton>
+              </FileItem>
+            ))}
+          </FileList>
+        )}
         <SubmitButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -220,7 +280,7 @@ const Contact = () => {
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </SubmitButton>
-        {submitStatus === 'success' && <p style={{color: '#00ff99'}}>Message sent successfully!</p>}
+        {submitStatus === 'success' && <p style={{color: PRIMARY_COLOR}}>Message sent successfully!</p>}
         {submitStatus === 'error' && <p style={{color: '#ff6666'}}>Failed to send message. Please try again.</p>}
       </ContactForm>
     </ContactSection>
