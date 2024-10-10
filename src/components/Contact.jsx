@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { keyframes } from '@emotion/react';
+import axios from 'axios';
 
 // Keyframes for background animation (color transition)
 const backgroundAnimation = keyframes`
@@ -29,8 +30,8 @@ const ContactSection = styled.section`
   background-size: 400% 400%;
   animation: ${backgroundAnimation} 15s ease infinite;
   text-align: center;
-  position: relative;  /* For floating dots */
-  overflow: hidden;    /* To hide dots that float outside */
+  position: relative;
+  overflow: hidden;
 `;
 
 const FloatingDot = styled.div`
@@ -75,7 +76,6 @@ const ContactForm = styled(motion.form)`
   max-width: 600px;
   margin: 0 auto;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  animation: ${float} 1s ease;
   &:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   }
@@ -144,20 +144,38 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+     
+      const response = await axios.post('http://localhost:3000/api/contact', formData);
+      
+      if (response.status === 200) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
     <ContactSection>
-      {/* Floating animated dots */}
       <FloatingDot />
       <FloatingDot />
       <FloatingDot />
@@ -198,9 +216,12 @@ const Contact = () => {
         <SubmitButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          disabled={isSubmitting}
         >
-          Send Message
+          {isSubmitting ? 'Sending...' : 'Send Message'}
         </SubmitButton>
+        {submitStatus === 'success' && <p style={{color: '#00ff99'}}>Message sent successfully!</p>}
+        {submitStatus === 'error' && <p style={{color: '#ff6666'}}>Failed to send message. Please try again.</p>}
       </ContactForm>
     </ContactSection>
   );
