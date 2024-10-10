@@ -19,7 +19,7 @@ const ProjectGrid = styled.div`
   flex-wrap: wrap;
 `;
 
-const ProjectCard = styled.a` // Updated to an anchor tag
+const ProjectCard = styled.a`
   background-color: #2b2b2b;
   color: #f7f7f7;
   border-radius: 15px;
@@ -29,7 +29,7 @@ const ProjectCard = styled.a` // Updated to an anchor tag
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
-
+  
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
@@ -82,7 +82,7 @@ const Projects = () => {
             <TechTag>Redux</TechTag>
           </TechTags>
         </ProjectCard>
-
+        
         {/* E-commerce App Card */}
         <ProjectCard href="https://e-comm-by-ijlal.netlify.app/" target="_blank">
           <ProjectTitle>E-commerce App</ProjectTitle>
@@ -96,6 +96,20 @@ const Projects = () => {
             <TechTag>React</TechTag>
             <TechTag>Redux</TechTag>
             <TechTag>Material UI</TechTag>
+          </TechTags>
+        </ProjectCard>
+
+        {/* Job App Card */}
+        <ProjectCard href="https://github.com/IjlalFurqaan/Job-App" target="_blank">
+          <ProjectTitle>Job Application Tracker</ProjectTitle>
+          <ProjectDescription>
+            An application to help job seekers track their applications, interviews, and networking contacts.
+          </ProjectDescription>
+          <TechTags>
+            <TechTag>React</TechTag>
+            <TechTag>Redux</TechTag>
+            <TechTag>Tailwind CSS</TechTag>
+            <TechTag>Bootstrap</TechTag>
           </TechTags>
         </ProjectCard>
       </ProjectGrid>
