@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import styled from "@emotion/styled";
+import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 // Styled components remain the same
 const HomeContainer = styled.div`
@@ -55,7 +55,8 @@ const HighlightText = styled.span`
   font-weight: bold;
 `;
 
-const Button = styled(motion(Link))` // Change from motion.a to motion(Link)
+const Button = styled(motion(Link))`
+  // Change from motion.a to motion(Link)
   display: inline-block;
   padding: 12px 24px;
   margin-top: 30px;
@@ -104,9 +105,10 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          I excel at crafting elegant digital experiences and am proficient in various programming
-          languages and technologies. With experience in both front-end and back-end development, I
-          specialize in building robust, scalable web applications.
+          I excel at crafting elegant digital experiences and am proficient in
+          various programming languages and technologies. With experience in
+          both front-end and back-end development, I specialize in building
+          robust, scalable web applications.
         </Description>
 
         <Description
@@ -114,10 +116,13 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          I am skilled in <HighlightText>React</HighlightText>,{' '}
-          <HighlightText>Node.js</HighlightText>, <HighlightText>JavaScript</HighlightText>, and{' '}
-          <HighlightText>REST APIs</HighlightText>, and I have a passion for creating clean,
-          intuitive, and user-friendly interfaces.
+          I am skilled in <HighlightText>React.js</HighlightText>,{" "}
+          <HighlightText>Node.js</HighlightText>,{" "}
+          <HighlightText>MongoDB</HighlightText>,{" "}
+          <HighlightText>Express.js</HighlightText>{" "}
+          <HighlightText>JavaScript</HighlightText>, and{" "}
+          <HighlightText>REST APIs</HighlightText>, and I have a passion for
+          creating clean, intuitive, and user-friendly interfaces.
         </Description>
 
         <Button
@@ -135,7 +140,7 @@ const Home = () => {
           <IconLink
             href="https://github.com/IjlalFurqaan"
             target="_blank"
-            whileHover={{ scale: 1.2, color: '#000' }}
+            whileHover={{ scale: 1.2, color: "#000" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.2 }}
@@ -145,7 +150,7 @@ const Home = () => {
           <IconLink
             href="https://www.linkedin.com/in/ijlal-furqaan-32b7251b6/"
             target="_blank"
-            whileHover={{ scale: 1.2, color: '#0077b5' }}
+            whileHover={{ scale: 1.2, color: "#0077b5" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.4 }}
@@ -155,7 +160,7 @@ const Home = () => {
           <IconLink
             href="https://twitter.com/yourusername"
             target="_blank"
-            whileHover={{ scale: 1.2, color: '#1da1f2' }}
+            whileHover={{ scale: 1.2, color: "#1da1f2" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.6 }}
