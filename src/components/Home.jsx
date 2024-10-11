@@ -119,7 +119,7 @@ const Home = () => {
           I am skilled in <HighlightText>React.js</HighlightText>,{" "}
           <HighlightText>Node.js</HighlightText>,{" "}
           <HighlightText>MongoDB</HighlightText>,{" "}
-          <HighlightText>Express.js</HighlightText>{" "}
+          <HighlightText>Express.js</HighlightText>,{" "}
           <HighlightText>JavaScript</HighlightText>, and{" "}
           <HighlightText>REST APIs</HighlightText>, and I have a passion for
           creating clean, intuitive, and user-friendly interfaces.

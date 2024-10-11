@@ -110,6 +110,9 @@ const Projects = () => {
             <TechTag>Redux</TechTag>
             <TechTag>Tailwind CSS</TechTag>
             <TechTag>Bootstrap</TechTag>
+            <TechTag>Node.js</TechTag>
+            <TechTag>Express.js</TechTag>
+            <TechTag>Cloudinary</TechTag>
           </TechTags>
         </ProjectCard>
       </ProjectGrid>
